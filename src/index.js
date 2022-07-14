@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+} from '@apollo/client';
 
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { FilterProvider } from './context/FilterContex';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -16,9 +22,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <FilterProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </FilterProvider>
     </ApolloProvider>
   </React.StrictMode>
 );
