@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
+
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import DateTime from './DateTime';
 
 const Card = styled.div`
   padding: 0.5rem 1rem;
@@ -19,10 +20,16 @@ const TodoCard = ({ title, type, createdAt, isDone, id }) => (
     <Flex>
       <Link to={`/todo/${id}`}>{title}</Link>
       {type}
-      <DateTime date={createdAt} />
+      <span>{createdAt}</span>
       {isDone ? 'Done' : 'Not Done'}
     </Flex>
   </Card>
 );
 
 export default TodoCard;
+
+TodoCard.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.oneOf(['RH', 'Tech', 'Marketing', 'Communication']),
+  createdAt: PropTypes.string,
+};

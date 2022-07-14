@@ -1,17 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { FilterProvider } from './context/FilterContex';
 
-console.log(process.env);
+import App from './App';
+import { FilterProvider } from './context/FilterContex';
+import reportWebVitals from './reportWebVitals';
+import { transformDate } from './utils';
+
+import './index.css';
+
 const client = new ApolloClient({
   uri: process.env.REACT_APP_API_URL,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Todo: {
+        fields: {
+          createdAt: {
+            read: transformDate('en-GB'), // What happens if we change the format, when the app is running? The change may not be reflected.
+          },
+        },
+      },
+    },
+  }),
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

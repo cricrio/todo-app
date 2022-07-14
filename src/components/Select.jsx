@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import ReactSelect from 'react-select';
 
 const Select = ({ isMulti, defaultValue, options, onChange }) => {
@@ -20,3 +22,18 @@ const Select = ({ isMulti, defaultValue, options, onChange }) => {
 };
 
 export default Select;
+
+Select.propTypes = {
+  isMulti: PropTypes.bool,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  onChange: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    })
+  ),
+};
