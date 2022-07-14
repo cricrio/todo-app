@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import TodoCard from '../components/TodoCard';
 
 const GET_TODO_QUERY = gql`
@@ -23,7 +23,12 @@ const TodoDetail = () => {
   if (loading) return null;
   if (error) return `Error! ${error}`;
   const todo = data.getTodoById;
-  return <TodoCard {...todo} />;
+  return (
+    <>
+      <Link to='/'>Back</Link>
+      <TodoCard {...todo} />
+    </>
+  );
 };
 
 export default TodoDetail;
