@@ -23,6 +23,7 @@ const TodoDetail = () => {
   if (loading) return null;
   if (error) return `Error! ${error}`;
   const todo = data.getTodoById;
+
   return (
     <>
       <Link to='/'>Back</Link>

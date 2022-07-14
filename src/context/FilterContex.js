@@ -43,7 +43,6 @@ export const FilterProvider = ({ children }) => {
     [dispatch]
   );
 
-  console.log(state);
   return (
     <FilterContext.Provider value={{ ...state, onChange }}>
       {children}
